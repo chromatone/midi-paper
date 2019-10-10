@@ -9,7 +9,7 @@ const bg = Vue.component('bg',{
       rect: new paper.Shape.Rectangle({
         point:[0,0],
         size:paper.view.bounds,
-        fillColor:'#060'
+        fillColor:'#ee0'
       }),
       events: [
         ['noteinon14', this.changeBg],
@@ -23,10 +23,19 @@ const bg = Vue.component('bg',{
 
   },
   methods: {
-    changeBg (ev) { this.rect.fillColor.hue++ },
-    ccHue (cc) {this.rect.fillColor.hue=(cc/127)*360},
+    changeBg (ev) {
+      this.rect.tween({
+        'fillColor.hue': ((ev.number+3)%12)*30
+      },{duration:1000, easing:'easeInOutQuad'})
+    },
+    ccHue (cc) {
+      this.rect.tween({
+        'fillColor.hue': (cc/127)*360
+      },{duration:300, easing:'easeInOutQuad'})
+    },
     ccLightness (cc) {this.rect.fillColor.lightness=(cc/127);}
   },
+
   created() {
     for (event of this.events) {
       this.$midiBus.$on(event[0],event[1])

@@ -19,7 +19,7 @@ const column = Vue.component('column',{
   },
   methods: {
     calcRadius(number) {
-      return Number(Math.pow(2, (127-number) / 12)/1.5);
+      return Number(Math.pow(2, (127-number) / 12));
     },
     calcHeight(number) {
       return paper.view.bounds.height*(127-number)/127
