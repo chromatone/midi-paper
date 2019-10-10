@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Paper @chromatone</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <script src="assets/StartAudioContext.js"></script>
+  <script src="assets/Tone.min.js"></script>
+  <script src="assets/vue.js"></script>
+
+
+
+</head>
+
+<body>
+
+
+  <div id="midi-paper">
+    <midi-bus :absolute="true" :channels.sync="channels"></midi-bus>
+    <paper :channels="channels" v-slot="{mounted}">
+      <random v-if="channels[5]" :channel="channels[5]"></random>
+      <column v-if="channels[7]" :channel="channels[7]"></column>
+      <spiral  v-if="channels[8]" :channel="channels[8]"></spiral>
+      <bg v-if="mounted"></bg>
+    </paper>
+
+  </div>
+
+
+  <script type="text/javascript" src="assets/paper-full.js"></script>
+  <script type="text/javascript" src="assets/webmidi.js"></script>
+
+  <script type="text/javascript" src="js/components/midi-monitor.js"></script>
+  <script type="text/javascript" src="js/paper/random.js"></script>
+  <script type="text/javascript" src="js/paper/column.js"></script>
+  <script type="text/javascript" src="js/paper/spiral.js"></script>
+  <script type="text/javascript" src="js/paper/background.js"></script>
+  <script type="text/javascript" src="js/components/color-paper.js" ></script>
+  <script type="text/javascript" src="js/components/midi-bus.js"></script>
+  <script src="js/midi-paper.js"></script>
+
+</body>
+
+</html>
