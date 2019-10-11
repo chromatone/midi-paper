@@ -78,9 +78,7 @@ const spiral = Vue.component('spiral',{
     }
   },
   mounted() {
-    paper.view.onMouseDown = (event) => {
-      this.fade=event.point;
-    }
+
     this.createSpiral();
 
     window.addEventListener('resize', () => {

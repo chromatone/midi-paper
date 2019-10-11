@@ -23,9 +23,9 @@ const bg = Vue.component('bg',{
 
   },
   methods: {
-    changeBg (ev) {
+    changeBg (note) {
       this.rect.tween({
-        'fillColor.hue': ((ev.number+3)%12)*30
+        'fillColor.hue': ((note.number+3)%12)*30
       },{duration:1000, easing:'easeInOutQuad'})
     },
     ccHue (cc) {
@@ -47,9 +47,7 @@ const bg = Vue.component('bg',{
     }
   },
   mounted() {
-    console.log(this.layer)
-
-
+  
   //  this.$midiBus.$on('controlchange'+this.chNum, this.changeColor)
     window.addEventListener('resize', () => {
       this.rect.bounds.size=paper.view.bounds.size;

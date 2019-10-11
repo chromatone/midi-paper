@@ -55,9 +55,7 @@ const column = Vue.component('column',{
     }
   },
   mounted() {
-    paper.view.onMouseDown = (event) => {
-      this.fade=event.point;
-    }
+    
   },
   created() {
     for (event of this.events) {
