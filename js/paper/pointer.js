@@ -22,7 +22,7 @@ const pointer = Vue.component('pointer',{
   methods: {
   },
   mounted() {
-    paper.view.onMouseDown = (event) => {
+    paper.view.onMouseMove = (event) => {
       this.point.set([event.point.x,event.point.y]);
     }
     paper.view.onFrame = () => {

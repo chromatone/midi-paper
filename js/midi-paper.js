@@ -8,7 +8,11 @@ const ct = new Vue({
   data: {
     channels:{}
   },
+  methods: {
+
+  },
   mounted: function() {
+
     if (
       /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
         navigator.userAgent
@@ -16,6 +20,7 @@ const ct = new Vue({
     ) {
       StartAudioContext(Tone.context, "button").then(function() {});
     }
+
   }
 
 })

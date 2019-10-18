@@ -23,10 +23,15 @@
     <paper :channels="channels" v-slot="{mounted}">
       <random v-if="channels[4]" :channel="channels[4]"></random>
       <bottom v-if="channels[5]" :channel="channels[5]"></bottom>
-      <column v-if="channels[7]" :channel="channels[7]"></column>
+      <column v-if="channels[6]" :channel="channels[6]"></column>
       <spiral  v-if="channels[8]" :channel="channels[8]"></spiral>
+      <grid  v-if="channels[7]" :channel="channels[7]"></grid>
+      <box  v-if="channels[1]" :channel="channels[1]"></box>
+      <hats  v-if="channels[3]" :channel="channels[3]"></hats>
+      <snares  v-if="channels[2]" :channel="channels[2]"></snares>
       <bg v-if="mounted"></bg>
       <pointer v-if="mounted"></pointer>
+
     </paper>
 
   </div>
@@ -35,13 +40,10 @@
   <script type="text/javascript" src="assets/paper-full.js"></script>
   <script type="text/javascript" src="assets/webmidi.js"></script>
 
+
   <script type="text/javascript" src="js/components/midi-monitor.js"></script>
-  <script type="text/javascript" src="js/paper/random.js"></script>
-  <script type="text/javascript" src="js/paper/bottom.js"></script>
-  <script type="text/javascript" src="js/paper/pointer.js"></script>
-  <script type="text/javascript" src="js/paper/column.js"></script>
-  <script type="text/javascript" src="js/paper/spiral.js"></script>
-  <script type="text/javascript" src="js/paper/background.js"></script>
+  <script type="text/javascript" src="js/layers.js"></script>
+
   <script type="text/javascript" src="js/components/color-paper.js" ></script>
   <script type="text/javascript" src="js/components/midi-bus.js"></script>
   <script src="js/midi-paper.js"></script>
