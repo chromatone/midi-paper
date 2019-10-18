@@ -162,13 +162,7 @@ paperLayers.box = Vue.component('box',{
         fillColor:null,
         strokeWidth:1
       })
-      for (let i=0;i<3;i++) {
-        this.copies[i]=this.squares[length].clone();
-        this.copies[i].scale(1+0.25*i);
-        this.copies[i].opacity=1-i*0.3
-        this.copies[i].tween({
-          size:[bounds.width*i,bounds.width*i]
-        },2000)
+
       }
       this.squares[length].tween({
         opacity:0,
