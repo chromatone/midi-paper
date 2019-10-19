@@ -163,7 +163,7 @@ paperLayers.box = Vue.component('box',{
         strokeWidth:1
       })
 
-      }
+
       this.squares[length].tween({
         opacity:0,
         size:[bounds.width/3,bounds.width/3]
@@ -276,7 +276,7 @@ paperLayers.pointer = Vue.component('pointer',{
   },
   watch: {
     'pointer.position'() {
-      paper.view.draw()
+    
     }
   },
   methods: {
