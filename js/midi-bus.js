@@ -1,4 +1,6 @@
-const midiBus = Vue.component('midi-bus', {
+Vue.prototype.$midiBus = new Vue(); // Global event bus
+
+export default {
   template:`
     <div class="midi-bus" :class="{'absolute':absolute}">
       <div class="devices">
@@ -24,7 +26,7 @@ const midiBus = Vue.component('midi-bus', {
   },
   watch: {
     'midi.inputs': function (inputs) {
-      for (input of inputs) {
+      for (let input of inputs) {
         this.setListeners(input)
       }
 
@@ -111,4 +113,4 @@ const midiBus = Vue.component('midi-bus', {
   /*  this.$midiBus.$on('noteouton', this.noteOutOn)
     this.$midiBus.$on('noteoutoff', this.noteOutOff) */
   }
-})
+}
