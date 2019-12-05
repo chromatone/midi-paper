@@ -37,7 +37,7 @@ const colorPaper = Vue.component('paper',{
       <column v-if="channels[6]" :channel="channels[6]"></column>
       <spiral  v-if="channels[8]" :channel="channels[8]"></spiral>
       <grid  v-if="channels[7]" :channel="channels[7]"></grid>
-      <box  v-if="false" :channel="channels[1]"></box>
+      <box  v-if="channels[1]" :channel="channels[1]"></box>
       <hats  v-if="channels[3]" :channel="channels[3]"></hats>
       <snares  v-if="channels[2]" :channel="channels[2]"></snares>
       <blobs v-if="false"></blobs>
@@ -78,11 +78,4 @@ const ct = new Vue({
   data: {
     channels:{}
   },
-  methods: {
-
-  },
-  mounted: function() {
-
-  }
-
-})
+});

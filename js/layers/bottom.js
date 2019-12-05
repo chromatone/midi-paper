@@ -16,21 +16,33 @@ export default {
     createBottom() {
       for (let i=0;i<12;i++) {
         this.circles[i] = new paper.Shape.Circle({
-          center:[((i)/12)*paper.view.bounds.width, paper.view.bounds.height],
+          center:[0,0],
           radius:paper.view.bounds.height*0.4,
           opacity:0,
-          fillColor:{
+          strokeWidth:80,
+          strokeColor:{
             hue:i*30,
             lightness:0.5,
             saturation:0.8
           }
         })
       }
-      this.positionBottom();
+      this.positionCircle();
     },
-    positionBottom() {
-      for(let i=0;i<12;i++) {
-        this.circles[i].position = [((i)/12)*paper.view.bounds.width, paper.view.bounds.height]
+    positionCircle() {
+      var width = paper.view.bounds.width,
+        height = paper.view.bounds.height,
+        angle,
+        x,
+        y,
+        i;
+
+      for (i = 0; i < 12; i++) {
+        angle = ((i-3) / (12 / 2)) * Math.PI; // Calculate the angle at which the element will be placed.
+        // For a semicircle, we would use (i / numNodes) * Math.PI.
+        x = ((width/3) * Math.cos(angle)) + (width / 2); // Calculate the x position of the element.
+        y = ((width/3) * Math.sin(angle)) + (width / 2); // Calculate the y position of the element.
+        this.circles[i].position=[x,y]
       }
     },
     playNote(note) {
@@ -41,7 +53,7 @@ export default {
       this.circles[note.digit].tween({
         opacity:1,
       }, {
-        duration:300,
+        duration:100,
         easing:'easeOutQuad'
       })
     },
@@ -50,25 +62,22 @@ export default {
         opacity:0,
     //    radius:0
       }, {
-        duration:4200,
+        duration:3000,
         easing:'easeInOutQuad'
       })
-      console.log(this.circles.length)
     }
   },
   mounted() {
-    console.log(this.channel)
     this.$midiBus.$on('noteinon'+this.channel.num, this.playNote)
     this.$midiBus.$on('noteinoff'+this.channel.num, this.stopNote)
     this.createBottom()
     window.addEventListener('resize', () => {
-      this.positionBottom();
+      this.positionCircle();
     })
   },
   beforeDestroy() {
-
       this.$midiBus.$off('noteinon'+this.channel.num)
       this.$midiBus.$off('noteinoff'+this.channel.num)
-
+      this.circles=undefined;
   }
 }

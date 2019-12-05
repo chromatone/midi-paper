@@ -23,7 +23,10 @@ export default {
       return Number(3*Math.pow(2, (127-number) / 12));
     },
     calcWidth(number) {
-      return paper.view.bounds.height*(number)/127
+      return paper.view.bounds.width*(number)/127
+    },
+    calcHeight(number) {
+      return paper.view.bounds.height*(1-(number)/127)
     },
     controls(value) {
       console.log(value)
@@ -32,7 +35,7 @@ export default {
       let bounds = paper.view.bounds
       this.circles[length] = new paper.Shape.Circle({
         nameOct:note.nameOct,
-        center:[this.calcWidth(note.number), bounds.height/2],
+        center:[this.calcWidth(note.number), this.calcHeight(note.number)],
         radius:this.calcRadius(note.number),
         layer:this.layer,
         strokeWidth:this.stroke,

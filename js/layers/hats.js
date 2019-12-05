@@ -56,11 +56,11 @@ export default {
     }
   },
   mounted() {
-    console.log(this.channel)
     this.$midiBus.$on('noteinon'+this.channel.num, this.randomHat)
   },
   beforeDestroy() {
-
+      this.circle.remove();
+      this.circle=undefined;
       this.$midiBus.$off('noteinon'+this.channel.num)
 
   }

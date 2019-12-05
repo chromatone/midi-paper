@@ -2,7 +2,7 @@ import Ola from '../../assets/ola.min.js'
 
 
 export default {
-  template: '<div></div>',
+  template: '<div ></div>',
   props: ['channel'],
   data() {
     return {
@@ -12,7 +12,7 @@ export default {
       point: Ola([0,0],1000),
       pointer: new paper.Shape.Circle({
         center:this.point,
-        radius:10,
+        radius:8,
         fillColor:'#eee'
       })
     }
@@ -23,6 +23,7 @@ export default {
     }
   },
   methods: {
+    
   },
   mounted() {
     paper.view.onMouseMove = (event) => {

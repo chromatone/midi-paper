@@ -11,10 +11,14 @@ export default {
         size:paper.view.bounds,
         fillColor:'#aaa'
       }),
+      lightness:0.5,
       events: [
         ['noteinon14', this.changeBg],
         ['14cc2',(cc) => {this.rect.fillColor.hue=(cc/127)*360}],
-        ['14cc3',(cc) => {this.rect.fillColor.lightness=cc/127}],
+        ['14cc3',(cc) => {
+          this.rect.fillColor.lightness=cc/127;
+          this.lightness=cc/127;
+        }],
         ['14cc4',(cc) => {this.rect.fillColor.saturation=(cc/127)}]
       ]
     }
@@ -24,9 +28,11 @@ export default {
   },
   methods: {
     boom() {
-      let prev = this.rect.fillColor.lightness;
+      if (this.rect.t) {this.rect.s.stop()};
+
+      let prev = this.lightness;
       this.rect.tween({
-        'fillColor.lightness':prev+0.05
+        'fillColor.lightness':prev+0.1
       }, 10).then( (t) => {
           t.tween({
             'fillColor.lightness':prev
@@ -57,7 +63,7 @@ export default {
     }
   },
   mounted() {
-    this.$midiBus.$on('noteinon1', this.boom) //boom on kick
+//    this.$midiBus.$on('noteinon1', this.boom) //boom on kick
   //  this.$midiBus.$on('controlchange'+this.chNum, this.changeColor)
     window.addEventListener('resize', () => {
       this.rect.bounds.size=paper.view.bounds.size;

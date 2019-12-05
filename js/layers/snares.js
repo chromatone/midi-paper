@@ -56,7 +56,6 @@ export default {
     }
   },
   mounted() {
-    console.log(this.channel)
     this.$midiBus.$on('noteinon'+this.channel.num, this.randomSnare)
   },
   beforeDestroy() {

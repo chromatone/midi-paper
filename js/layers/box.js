@@ -1,13 +1,18 @@
 export default {
-  template: '<div></div>',
+  template: '<div ></div>',
   props: ['channel'],
   data() {
     return {
       layer: new paper.Layer({
         name:'box'
       }),
-      squares:[],
-      copies:[]
+      box: new paper.Shape.Rectangle({
+        center:[paper.view.bounds.width/2, paper.view.bounds.height/2],
+        size:[paper.view.bounds.width/4, paper.view.bounds.width/4],
+        layer:this.layer,
+        fillColor:'#fff',
+        opacity:0,
+      })
     }
   },
   watch: {
@@ -16,39 +21,35 @@ export default {
     }
   },
   methods: {
+    positionBox() {
+      this.box.position = [
+        paper.view.bounds.width/2,
+        paper.view.bounds.height/2
+      ]
+    },
     boom(note) {
-      let bounds = paper.view.bounds
-      let length = this.squares.length;
-      this.squares[length] = new paper.Shape.Rectangle({
-        nameOct:note.nameOct,
-        center:[bounds.width/2, bounds.height/2],
-        size:[bounds.width/6, bounds.width/6],
-        layer:this.layer,
-        strokeColor: '#fff',
-        fillColor:null,
-        strokeWidth:1
+      let bounds = paper.view.bounds;
+      this.box.tween({
+        opacity:1
+      },30).then((t) => {
+        t.tween({
+          opacity:0
+        },{
+          duration:800,
+          easing:'easeOutQuad'
+        })
       })
-
-
-      this.squares[length].tween({
-        opacity:0,
-        size:[bounds.width/3,bounds.width/3]
-      },{
-        duration:800,
-        easing:'easeInOutQuad'
-      })
-       if (this.squares[length]>4) {
-         this.squares.shift()
-       }
     }
   },
   mounted() {
-    console.log(this.channel)
-    this.$midiBus.$on('noteinon'+this.channel.num, this.boom)
+    this.$midiBus.$on('noteinon'+this.channel.num, this.boom);
+    window.addEventListener('resize', () => {
+      this.positionBox();
+    })
   },
   beforeDestroy() {
-
-      this.$midiBus.$off('noteinon'+this.channel.num)
-
+    this.box.remove();
+    this.box=undefined;
+    this.$midiBus.$off('noteinon'+this.channel.num)
   }
 }

@@ -1,5 +1,5 @@
 export default {
-  template: '<div></div>',
+  template: '<div ></div>',
   props: ['channel'],
   data() {
     return {

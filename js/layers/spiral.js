@@ -48,7 +48,7 @@ export default {
       }
     },
     updateSpiral() {
-      for (i=0;i<108;i++) {
+      for (let i=0;i<108;i++) {
         this.spiral[i].position = this.spiralCoords(i)
       }
     },

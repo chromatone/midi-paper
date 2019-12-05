@@ -100,5 +100,6 @@ export default {
     for (event of this.events) {
       this.$midiBus.$off(event[0])
     }
+    this.grid=undefined;
   }
 }

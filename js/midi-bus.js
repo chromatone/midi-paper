@@ -6,7 +6,7 @@ export default {
       <div class="devices">
         <span class="status" :class="{'active':midi.supported, 'error':!midi.supported}">
           MIDI</span><span v-for="input in midi.inputs" class="status">{{input.name}}</span>
-            {{inNote.note.channel}}{{inNote.note.nameOct}}; {{inCc.channel}}CC{{inCc.controller.number}} - {{inCc.value}}
+            {{inNote.note.channel}}{{inNote.note.nameOct}} {{inCc.channel}}CC{{inCc.controller.number}} - {{inCc.value}}
       </div>
 
     </div>
@@ -60,7 +60,7 @@ export default {
       this.$emit('update:channels', this.channels)
     },
     noteInOff(ev) {
-      
+
       let note = this.makeNote(ev)
       this.$midiBus.$emit('noteinoff'+note.channel, note)
       if (this.channels[ev.channel] && this.channels[ev.channel].notes && this.channels[ev.channel].notes[note.nameOct]) {
