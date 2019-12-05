@@ -23,6 +23,16 @@ export default {
 
   },
   methods: {
+    boom() {
+      let prev = this.rect.fillColor.lightness;
+      this.rect.tween({
+        'fillColor.lightness':prev+0.05
+      }, 10).then( (t) => {
+          t.tween({
+            'fillColor.lightness':prev
+        },100)
+      })
+    },
     changeBg (note) {
       this.rect.tween({
         'fillColor.hue': ((note.number+3)%12)*30
@@ -31,7 +41,7 @@ export default {
     ccHue (cc) {
       this.rect.tween({
         'fillColor.hue': (cc/127)*360
-      },{duration:300, easing:'easeInOutQuad'})
+      },{duration:400, easing:'easeInOutQuad'})
     },
     ccLightness (cc) {this.rect.fillColor.lightness=(cc/127);}
   },
@@ -47,7 +57,7 @@ export default {
     }
   },
   mounted() {
-
+    this.$midiBus.$on('noteinon1', this.boom) //boom on kick
   //  this.$midiBus.$on('controlchange'+this.chNum, this.changeColor)
     window.addEventListener('resize', () => {
       this.rect.bounds.size=paper.view.bounds.size;

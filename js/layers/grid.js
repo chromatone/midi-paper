@@ -7,7 +7,7 @@ export default {
         name:'grid'
       }),
       stroke:20,
-      startRadius:paper.view.bounds.width/26,
+      startRadius:paper.view.bounds.width/13,
       maxRadius:paper.view.bounds.width/13,
       grid:[],
       events: [
@@ -67,7 +67,7 @@ export default {
       this.grid[note.octave][note.digit].bringToFront();
       this.grid[note.octave][note.digit].tween({
         opacity:1,
-        radius:this.maxRadius
+//        radius:this.maxRadius
       }, {
         duration:200,
         easing:'easeOutQuad'
@@ -76,7 +76,7 @@ export default {
     stopNote(note) {
        this.grid[note.octave][note.digit].t = this.grid[note.octave][note.digit].tween({
         opacity:0,
-        radius:this.startRadius
+  //      radius:this.startRadius
       }, {
         duration:1500,
         easing:'easeInOutQuad'

@@ -37,11 +37,11 @@ const colorPaper = Vue.component('paper',{
       <column v-if="channels[6]" :channel="channels[6]"></column>
       <spiral  v-if="channels[8]" :channel="channels[8]"></spiral>
       <grid  v-if="channels[7]" :channel="channels[7]"></grid>
-      <box  v-if="channels[1]" :channel="channels[1]"></box>
+      <box  v-if="false" :channel="channels[1]"></box>
       <hats  v-if="channels[3]" :channel="channels[3]"></hats>
       <snares  v-if="channels[2]" :channel="channels[2]"></snares>
-      <blobs v-if="mounted"></blobs>
-      <chain v-if="mounted"></chain>
+      <blobs v-if="false"></blobs>
+      <chain v-if="false"></chain>
       <pointer v-if="mounted"></pointer>
     </canvas>
 
@@ -58,9 +58,6 @@ const colorPaper = Vue.component('paper',{
     reset() {
       this.layers={};
     }
-  },
-  watch: {
-
   },
   created() {
     this.$midiBus.$on('reset',this.reset);

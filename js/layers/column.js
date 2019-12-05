@@ -20,10 +20,10 @@ export default {
   },
   methods: {
     calcRadius(number) {
-      return Number(Math.pow(2, (127-number) / 12));
+      return Number(3*Math.pow(2, (127-number) / 12));
     },
-    calcHeight(number) {
-      return paper.view.bounds.height*(127-number)/127
+    calcWidth(number) {
+      return paper.view.bounds.height*(number)/127
     },
     controls(value) {
       console.log(value)
@@ -32,7 +32,7 @@ export default {
       let bounds = paper.view.bounds
       this.circles[length] = new paper.Shape.Circle({
         nameOct:note.nameOct,
-        center:[bounds.width/2, this.calcHeight(note.number)],
+        center:[this.calcWidth(note.number), bounds.height/2],
         radius:this.calcRadius(note.number),
         layer:this.layer,
         strokeWidth:this.stroke,
@@ -44,8 +44,8 @@ export default {
       })
       this.circles[length].tween({
         opacity:0,
-        'position.y':this.fade.y,
-        'position.x':this.fade.x
+    //    'position.y':this.fade.y,
+    //    'position.x':this.fade.x
       },{
         duration:1000,
         easing:'easeInOutQuad'

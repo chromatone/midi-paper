@@ -9,7 +9,12 @@ export default {
       hats:[],
       maxCount:20,
       prevPoint:[0,0],
-      nextPoint:[100,100]
+      nextPoint:[100,100],
+      circle: new paper.Shape.Circle({
+        center:[100,100],
+        radius:5,
+        fillColor:'#fff',
+      })
     }
   },
   watch: {
@@ -25,12 +30,13 @@ export default {
     randomHat(note) {
 
       this.nextPoint = this.randomPos();
+      this.circle.position=this.nextPoint;
       this.hats[length] = new paper.Path({
         segments:[this.prevPoint,this.nextPoint],
         layer:this.layer,
         strokeColor:"#fff",
         strokeJoin:'bevel',
-        strokeWidth:1,
+        strokeWidth:3,
         fillColor:{
           hue:0,
           lightness:note.velocity,

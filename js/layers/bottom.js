@@ -17,7 +17,7 @@ export default {
       for (let i=0;i<12;i++) {
         this.circles[i] = new paper.Shape.Circle({
           center:[((i)/12)*paper.view.bounds.width, paper.view.bounds.height],
-          radius:150-i*4,
+          radius:paper.view.bounds.height*0.4,
           opacity:0,
           fillColor:{
             hue:i*30,
@@ -40,7 +40,6 @@ export default {
       this.circles[note.digit].bringToFront();
       this.circles[note.digit].tween({
         opacity:1,
-        radius:paper.view.bounds.height*0.4
       }, {
         duration:300,
         easing:'easeOutQuad'
@@ -48,12 +47,13 @@ export default {
     },
     stopNote(note) {
        this.circles[note.digit].t = this.circles[note.digit].tween({
-        opacity:0.2,
-        radius:0
+        opacity:0,
+    //    radius:0
       }, {
         duration:4200,
         easing:'easeInOutQuad'
       })
+      console.log(this.circles.length)
     }
   },
   mounted() {

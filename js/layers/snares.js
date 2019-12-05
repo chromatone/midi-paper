@@ -7,7 +7,8 @@ export default {
         name:'snares'
       }),
       snares:[],
-      maxCount:10
+      maxCount:10,
+      turn:true
     }
   },
   watch: {
@@ -17,10 +18,16 @@ export default {
   },
   methods: {
     getSegments(num,w,h) {
-      let segments=[];
-      for (let i=0;i<num;i++) {
-        segments[i]= [Math.random()*w, Math.random()*h]
-      }
+      let randomX = Math.random()*w;
+      let randomLen = Math.random()*w-w/2;
+      let randomHeight= Math.random()*h-h/2;
+      let randomY = Math.random()*h;
+      let segments=[
+        [randomX, randomY],
+        [randomX+randomLen*0.6, randomY],
+        [randomX+randomLen*0.6, randomY+randomHeight*0.6],
+      ];
+
       return segments
     },
     randomSnare(note) {
@@ -34,7 +41,8 @@ export default {
         strokeJoin:'miter',
         opacity:0.7,
         strokeWidth:20,
-        fillColor: null
+        fillColor: null,
+        rotation:Math.random()*180
       })
       this.snares[length].tween({
         opacity:0

@@ -13,7 +13,7 @@ export default {
       pointer: new paper.Shape.Circle({
         center:this.point,
         radius:10,
-        fillColor:'#333'
+        fillColor:'#eee'
       })
     }
   },

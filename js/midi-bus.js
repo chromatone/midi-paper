@@ -60,6 +60,7 @@ export default {
       this.$emit('update:channels', this.channels)
     },
     noteInOff(ev) {
+      
       let note = this.makeNote(ev)
       this.$midiBus.$emit('noteinoff'+note.channel, note)
       if (this.channels[ev.channel] && this.channels[ev.channel].notes && this.channels[ev.channel].notes[note.nameOct]) {
