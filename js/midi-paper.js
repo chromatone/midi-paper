@@ -1,33 +1,11 @@
 
 import midiBus from './midi-bus.js'
 
-import bg from './layers/bg.js'
-import bottom from './layers/bottom.js'
-import box from './layers/box.js'
-import pointer from './layers/pointer.js'
-import random from './layers/random.js'
-import spiral from './layers/spiral.js'
-import grid from './layers/grid.js'
-import hats from './layers/hats.js'
-import snares from './layers/snares.js'
-import blobs from './layers/blobs.js'
-import chain from './layers/chain.js'
-import column from './layers/column.js'
+import * as layers from './layers/all.js'
 
 const colorPaper = Vue.component('paper',{
   components: {
-    bg,
-    bottom,
-    box,
-    pointer,
-    random,
-    spiral,
-    grid,
-    hats,
-    snares,
-    blobs,
-    chain,
-    column
+    ...layers
   },
   template: `
     <canvas class="paper" id="canvas" data-paper-resize="true">

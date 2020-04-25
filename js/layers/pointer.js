@@ -1,7 +1,7 @@
 import Ola from '../../assets/ola.min.js'
 
 
-export default {
+export const pointer = {
   template: '<div ></div>',
   props: ['channel'],
   data() {
@@ -23,7 +23,7 @@ export default {
     }
   },
   methods: {
-    
+
   },
   mounted() {
     paper.view.onMouseMove = (event) => {

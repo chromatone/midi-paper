@@ -1,4 +1,4 @@
-export default {
+export const bg = {
   template: '<div></div>',
   props: [],
   data() {

@@ -1,4 +1,4 @@
-export default {
+export const snares = {
   template: '<div></div>',
   props: ['channel'],
   data() {

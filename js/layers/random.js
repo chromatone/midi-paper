@@ -1,4 +1,4 @@
-export default {
+export const random = {
   template: '<div></div>',
   props: ['channel'],
   data() {
@@ -20,12 +20,12 @@ export default {
       let num = this.circles.push(
         new paper.Path.Star({
           center:[Math.random()*bounds.width, Math.random()*bounds.height*0.8+bounds.height*0.2],
-          radius1:Math.abs(210 - note.number*2)/4,
+          radius1:Math.abs(210 - note.number*2)/3,
           radius2:Math.abs(note.number*2)/6,
           points:note.number%12+1,
           layer:this.layer,
           strokeColor:'#fff',
-          strokeWidth:20,
+          strokeWidth:10,
           rotaion:0
         })
       )

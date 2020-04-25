@@ -1,4 +1,4 @@
-export default {
+export const bottom = {
   template: '<div></div>',
   props: ['channel'],
   data() {

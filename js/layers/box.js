@@ -1,4 +1,4 @@
-export default {
+export const box = {
   template: '<div ></div>',
   props: ['channel'],
   data() {

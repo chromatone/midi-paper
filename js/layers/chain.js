@@ -1,4 +1,4 @@
-export default {
+export const chain = {
   template: '<div ></div>',
   props: ['channel'],
   data() {

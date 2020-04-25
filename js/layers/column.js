@@ -1,4 +1,4 @@
-export default {
+export const column = {
   template: '<div></div>',
   props: ['channel'],
   data() {
