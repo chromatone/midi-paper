@@ -15,7 +15,7 @@ export const bottom = {
       for (let i = 0; i < 12; i++) {
         this.circles[i] = new paper.Shape.Circle({
           center: [0, 0],
-          radius: paper.view.bounds.height * 0.4,
+          radius: paper.view.bounds.height * 0.3,
           opacity: 0,
           strokeWidth: 80,
           strokeColor: {
@@ -39,7 +39,7 @@ export const bottom = {
         angle = ((i - 3) / (12 / 2)) * Math.PI // Calculate the angle at which the element will be placed.
         // For a semicircle, we would use (i / numNodes) * Math.PI.
         x = (width / 4) * Math.cos(angle) + width / 2 // Calculate the x position of the element.
-        y = (width / 4) * Math.sin(angle) + width / 4 // Calculate the y position of the element.
+        y = (height / 4) * Math.sin(angle) + height / 2 // Calculate the y position of the element.
         this.circles[i].position = [x, y]
       }
     },
@@ -51,6 +51,8 @@ export const bottom = {
       this.circles[note.digit].tween(
         {
           opacity: 1,
+          //  strokeWidth: 200,
+          //  radius: paper.view.bounds.height * 0.3,
         },
         {
           duration: 100,
@@ -62,7 +64,8 @@ export const bottom = {
       this.circles[note.digit].t = this.circles[note.digit].tween(
         {
           opacity: 0,
-          //    radius:0
+          //  strokeWidth: 80,
+          //  radius: paper.view.bounds.height * 0.2,
         },
         {
           duration: 3000,

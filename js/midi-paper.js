@@ -1,13 +1,12 @@
-
 import midiBus from './midi-bus.js'
 
 import * as layers from './layers/all.js'
 
-const colorPaper = Vue.component('paper',{
+const colorPaper = Vue.component('paper', {
   components: {
-    ...layers
+    ...layers,
   },
-  template: `
+  template: /*html*/ `
     <canvas class="paper" id="canvas" data-paper-resize="true">
       <bg v-if="mounted"></bg>
       <bottom v-if="channels[5]" :channel="channels[5]"></bottom>
@@ -27,33 +26,32 @@ const colorPaper = Vue.component('paper',{
   props: ['channels'],
   data() {
     return {
-      mounted:false,
-      layers:{},
-      notes:{}
+      mounted: false,
+      layers: {},
+      notes: {},
     }
   },
   methods: {
     reset() {
-      this.layers={};
-    }
+      this.layers = {}
+    },
   },
   created() {
-    this.$midiBus.$on('reset',this.reset);
+    this.$midiBus.$on('reset', this.reset)
   },
   mounted() {
-    paper.setup(this.$el);
-    this.mounted=true;
-    paper.view.draw();
-  }
+    paper.setup(this.$el)
+    this.mounted = true
+    paper.view.draw()
+  },
 })
 
-
 const ct = new Vue({
-  el:"#midi-paper",
+  el: '#midi-paper',
   components: {
-    midiBus
+    midiBus,
   },
   data: {
-    channels:{}
+    channels: {},
   },
-});
+})
