@@ -70,7 +70,7 @@ export const grid = {
       this.grid[note.octave][note.digit].tween(
         {
           opacity: 1,
-          radius: this.maxRadius,
+          // radius: this.maxRadius,
         },
         {
           duration: 200,
@@ -84,7 +84,7 @@ export const grid = {
       ].tween(
         {
           opacity: 0,
-          radius: this.startRadius,
+          //  radius: this.startRadius,
         },
         {
           duration: 1500,

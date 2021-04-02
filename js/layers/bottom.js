@@ -17,7 +17,7 @@ export const bottom = {
           center: [0, 0],
           radius: paper.view.bounds.height * 0.3,
           opacity: 0,
-          strokeWidth: 80,
+          strokeWidth: 140,
           strokeColor: {
             hue: i * 30,
             lightness: 0.5,

@@ -9,14 +9,7 @@ const colorPaper = Vue.component('paper', {
   template: /*html*/ `
     <canvas class="paper" id="canvas" data-paper-resize="true">
       <bg v-if="mounted"></bg>
-      <bottom v-if="channels[5]" :channel="channels[5]"></bottom>
-      <random v-if="channels[4]" :channel="channels[4]"></random>
-      <column v-if="channels[6]" :channel="channels[6]"></column>
-      <spiral  v-if="channels[8]" :channel="channels[8]"></spiral>
-      <grid  v-if="channels[7]" :channel="channels[7]"></grid>
-      <box  v-if="channels[1]" :channel="channels[1]"></box>
-      <hats  v-if="channels[3]" :channel="channels[3]"></hats>
-      <snares  v-if="channels[2]" :channel="channels[2]"></snares>
+      <component v-for="(layer,num) in layers" :key="num" :is="layer" v-if="channels[num]" :channel="channels[num]" />
       <blobs v-if="false"></blobs>
       <chain v-if="false"></chain>
       <pointer v-if="mounted"></pointer>
@@ -27,13 +20,22 @@ const colorPaper = Vue.component('paper', {
   data() {
     return {
       mounted: false,
-      layers: {},
       notes: {},
+      layers: {
+        1: 'box',
+        2: 'snares',
+        3: 'hats',
+        4: 'random',
+        5: 'bottom',
+        6: 'column',
+        7: 'grid',
+        8: 'spiral',
+      },
     }
   },
   methods: {
     reset() {
-      this.layers = {}
+      console.log('reset')
     },
   },
   created() {

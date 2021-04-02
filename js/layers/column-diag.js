@@ -18,7 +18,7 @@ export const column = {
   watch: {},
   methods: {
     calcRadius(number) {
-      return Number(6 * Math.pow(2, (127 - number) / 12) + 10)
+      return Number(Math.pow(2, (127 - number) / 12) + 10)
     },
     calcWidth(number) {
       return (paper.view.bounds.width * number) / 127
@@ -30,9 +30,10 @@ export const column = {
       console.log(value)
     },
     playNote(note) {
+      let bounds = paper.view.bounds
       this.circles[length] = new paper.Shape.Circle({
         nameOct: note.nameOct,
-        center: [paper.view.bounds.width / 2, paper.view.bounds.height / 2],
+        center: [this.calcWidth(note.number), this.calcHeight(note.number)],
         radius: this.calcRadius(note.number),
         layer: this.layer,
         strokeWidth: this.stroke,

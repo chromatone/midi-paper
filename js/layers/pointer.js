@@ -1,37 +1,32 @@
 import Ola from '../../assets/ola.min.js'
 
-
 export const pointer = {
   template: '<div ></div>',
   props: ['channel'],
   data() {
     return {
       layer: new paper.Layer({
-        name:'pointer'
+        name: 'pointer',
       }),
-      point: Ola([0,0],1000),
+      point: Ola([0, 0], 1000),
       pointer: new paper.Shape.Circle({
-        center:this.point,
-        radius:8,
-        fillColor:'#eee'
-      })
+        center: this.point,
+        radius: 420,
+        opacity: 0.05,
+        fillColor: '#eee',
+      }),
     }
   },
   watch: {
-    'pointer.position'() {
-
-    }
+    'pointer.position'() {},
   },
-  methods: {
-
-  },
+  methods: {},
   mounted() {
     paper.view.onMouseMove = (event) => {
-      this.point.set([event.point.x,event.point.y]);
+      this.point.set([event.point.x, event.point.y])
     }
     paper.view.onFrame = (ev) => {
-      this.pointer.position=this.point
+      this.pointer.position = this.point
     }
-
-  }
+  },
 }
