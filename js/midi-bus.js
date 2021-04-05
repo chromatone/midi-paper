@@ -1,7 +1,7 @@
-Vue.prototype.$midiBus = new Vue(); // Global event bus
+Vue.prototype.$midiBus = new Vue() // Global event bus
 
 export default {
-  template:`
+  template: /*html*/ `
     <div class="midi-bus" :class="{'absolute':absolute}">
       <div class="devices">
         <span class="status" :class="{'active':midi.supported, 'error':!midi.supported}">
@@ -15,13 +15,13 @@ export default {
   data() {
     return {
       midi: {
-        supported:WebMidi.supported,
-        inputs:WebMidi.inputs,
-        outputs:WebMidi.outputs
+        supported: WebMidi.supported,
+        inputs: WebMidi.inputs,
+        outputs: WebMidi.outputs,
       },
-      channels:{},
-      inNote: {note: {channel:'', nameOct:''}},
-      inCc: {channel:'', controller: {number:''}, value:''}
+      channels: {},
+      inNote: { note: { channel: '', nameOct: '' } },
+      inCc: { channel: '', controller: { number: '' }, value: '' },
     }
   },
   watch: {
@@ -29,50 +29,52 @@ export default {
       for (let input of inputs) {
         this.setListeners(input)
       }
-
-    }
+    },
   },
   methods: {
     resetChannels() {
-      this.channels={};
+      this.channels = {}
     },
     checkChannel(ch) {
       if (!this.channels[ch]) {
-        this.$set(this.channels, ch, {num:ch,notes:{}, cc:{}})
+        this.$set(this.channels, ch, { num: ch, notes: {}, cc: {} })
       }
     },
     makeNote(ev) {
-      let note=ev.note;
-      let time = new Date();
-      note.id=ev.note.name+note.octave+time.getTime();
-      note.nameOct=note.name+note.octave;
-      note.channel=ev.channel;
-      note.velocity=ev.velocity;
-      note.digit = (note.number+3)%12;
+      let note = ev.note
+      let time = new Date()
+      note.id = ev.note.name + note.octave + time.getTime()
+      note.nameOct = note.name + note.octave
+      note.channel = ev.channel
+      note.velocity = ev.velocity
+      note.digit = (note.number + 3) % 12
       return note
     },
     noteInOn(ev) {
-      this.inNote=ev;
+      this.inNote = ev
       let note = this.makeNote(ev)
-      this.$midiBus.$emit('noteinon'+note.channel,note);
-      this.checkChannel(ev.channel);
+      this.$midiBus.$emit('noteinon' + note.channel, note)
+      this.checkChannel(ev.channel)
       this.$set(this.channels[ev.channel].notes, note.nameOct, note)
       this.$emit('update:channels', this.channels)
     },
     noteInOff(ev) {
-
       let note = this.makeNote(ev)
-      this.$midiBus.$emit('noteinoff'+note.channel, note)
-      if (this.channels[ev.channel] && this.channels[ev.channel].notes && this.channels[ev.channel].notes[note.nameOct]) {
-        this.channels[ev.channel].notes[note.nameOct].velocity=0;
+      this.$midiBus.$emit('noteinoff' + note.channel, note)
+      if (
+        this.channels[ev.channel] &&
+        this.channels[ev.channel].notes &&
+        this.channels[ev.channel].notes[note.nameOct]
+      ) {
+        this.channels[ev.channel].notes[note.nameOct].velocity = 0
       }
       this.$emit('update:channels', this.channels)
     },
     ccInChange(ev) {
-      this.inCc=ev;
-      this.$midiBus.$emit(ev.channel+'cc'+ev.controller.number,ev.value)
+      this.inCc = ev
+      this.$midiBus.$emit(ev.channel + 'cc' + ev.controller.number, ev.value)
       this.checkChannel(ev.channel)
-      this.$set(this.channels[ev.channel].cc,ev.controller.number,ev.value);
+      this.$set(this.channels[ev.channel].cc, ev.controller.number, ev.value)
       this.$emit('update:channels', this.channels)
     },
     /*
@@ -91,27 +93,24 @@ export default {
       }
     }, */
     reset(e) {
-      this.resetChannels();
-      this.$midiBus.$emit('reset');
+      this.resetChannels()
+      this.$midiBus.$emit('reset')
       this.$emit('update:channels', this.channels)
     },
     setListeners(input) {
-      input.removeListener();
-      input.addListener('noteon', "all", this.noteInOn);
-      input.addListener('noteoff', "all", this.noteInOff);
-      input.addListener('controlchange', "all", this.ccInChange);
+      input.removeListener()
+      input.addListener('noteon', 'all', this.noteInOn)
+      input.addListener('noteoff', 'all', this.noteInOff)
+      input.addListener('controlchange', 'all', this.ccInChange)
       input.addListener('stop', 'all', this.reset)
-
-    }
+    },
   },
-  computed: {
-
-  },
+  computed: {},
   created() {
     if (WebMidi.supported) {
-      WebMidi.enable();
+      WebMidi.enable()
     }
-  /*  this.$midiBus.$on('noteouton', this.noteOutOn)
+    /*  this.$midiBus.$on('noteouton', this.noteOutOn)
     this.$midiBus.$on('noteoutoff', this.noteOutOff) */
-  }
+  },
 }

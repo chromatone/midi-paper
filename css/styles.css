@@ -109,3 +109,22 @@ body {
   color: white;
   background-color: hsla(60, 0%, 60%, 0.2);
 }
+
+.presets {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+}
+
+.preset {
+  padding: 0.25em;
+  margin: 0.25em;
+  background-color: hsla(0, 0%, 100%, 0.4);
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+.preset .active {
+  opacity: 1;
+}
