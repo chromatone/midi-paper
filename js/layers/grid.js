@@ -1,5 +1,6 @@
 export const grid = {
   template: '<div></div>',
+  name: 'grid',
   props: ['channel'],
   data() {
     return {

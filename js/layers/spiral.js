@@ -1,5 +1,6 @@
 export const spiral = {
   template: '<div></div>',
+  name: 'spiral',
   props: ['channel'],
   data() {
     return {

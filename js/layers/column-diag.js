@@ -1,5 +1,6 @@
 export const column = {
   template: '<div></div>',
+  name: 'column-diag',
   props: ['channel'],
   data() {
     return {

@@ -1,18 +1,13 @@
 import midiBus from './midi-bus.js'
 
-import * as layers from './layers/all.js'
+import { main } from './presets.js'
 
 const colorPaper = Vue.component('paper', {
-  components: {
-    ...layers,
-  },
   template: /*html*/ `
     <canvas class="paper" id="canvas" data-paper-resize="true">
-      <bg v-if="mounted"></bg>
-      <component v-for="(layer,num) in layers" :key="num" :is="layer" v-if="channels[num]" :channel="channels[num]" />
-      <blobs v-if="false"></blobs>
-      <chain v-if="false"></chain>
-      <pointer v-if="mounted"></pointer>
+      <div v-if="mounted">
+        <component v-for="layer in presets[0]" :key="layer.comp.name" :is="layer.comp" v-if="layer.ch ? channels[layer.ch] : true" :channel="channels[layer.ch]" />
+      </div>
     </canvas>
 
   `,
@@ -21,16 +16,7 @@ const colorPaper = Vue.component('paper', {
     return {
       mounted: false,
       notes: {},
-      layers: {
-        1: 'box',
-        2: 'snares',
-        3: 'hats',
-        4: 'random',
-        5: 'bottom',
-        6: 'column',
-        7: 'grid',
-        8: 'spiral',
-      },
+      presets: [main],
     }
   },
   methods: {

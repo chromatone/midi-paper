@@ -1,5 +1,6 @@
 export const random = {
   template: '<div></div>',
+  name: 'random',
   props: ['channel'],
   data() {
     return {

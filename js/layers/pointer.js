@@ -2,6 +2,7 @@ import Ola from '../../assets/ola.min.js'
 
 export const pointer = {
   template: '<div ></div>',
+  name: 'pointer',
   props: ['channel'],
   data() {
     return {

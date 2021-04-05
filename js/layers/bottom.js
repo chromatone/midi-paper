@@ -1,5 +1,6 @@
 export const bottom = {
   template: '<div></div>',
+  name: 'bottom',
   props: ['channel'],
   data() {
     return {
