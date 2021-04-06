@@ -121,10 +121,15 @@ body {
   padding: 0.25em;
   margin: 0.25em;
   background-color: hsla(0, 0%, 100%, 0.4);
-  opacity: 0.5;
+  opacity: 0.3;
+  font-size: 0.8em;
   cursor: pointer;
 }
 
-.preset .active {
-  opacity: 1;
+.preset:hover {
+  opacity: 0.5;
+}
+
+.preset.active {
+  opacity: 0.6;
 }

@@ -1,4 +1,4 @@
-import Ola from '../../assets/ola.min.js'
+import Ola from '../assets/ola.min.js'
 
 export const pointer = {
   template: '<div ></div>',

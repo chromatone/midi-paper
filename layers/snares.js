@@ -62,5 +62,6 @@ export const snares = {
   },
   beforeDestroy() {
     this.$midiBus.$off('noteinon' + this.channel.num)
+    this.snares = []
   },
 }

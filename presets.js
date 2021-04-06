@@ -7,6 +7,7 @@ import { spiral } from './layers/spiral.js'
 import { grid } from './layers/grid.js'
 import { hats } from './layers/hats.js'
 import { snares } from './layers/snares.js'
+import { lines } from './layers/lines.js'
 import { blobs } from './layers/blobs.js'
 import { chain } from './layers/chain.js'
 import { column } from './layers/column.js'
@@ -33,7 +34,7 @@ export const presets = [
       { comp: bg },
       { comp: pointer },
       { comp: box, ch: 1 },
-      { comp: snares, ch: 2 },
+      { comp: lines, ch: 2 },
       { comp: hats, ch: 3 },
       { comp: random, ch: 4 },
       { comp: bottom, ch: 5 },
@@ -43,22 +44,3 @@ export const presets = [
     ],
   },
 ]
-
-export const preseter = {
-  template: /*html*/ `
-    <div class="presets">
-      <div 
-        class="preset" 
-        v-for="preset in presets" :key="preset.title" 
-        >
-        {{ preset.title }}
-      </div>
-    </div>
-  `,
-  data() {
-    return {
-      presets,
-    }
-  },
-  mounted() {},
-}

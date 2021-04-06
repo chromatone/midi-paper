@@ -54,5 +54,6 @@ export const random = {
   },
   beforeDestroy() {
     this.$midiBus.$off('noteinon' + this.channel.num)
+    this.circles = []
   },
 }
