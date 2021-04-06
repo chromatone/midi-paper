@@ -17,7 +17,7 @@
 
 
   <div id="midi-paper">
-    <presetter :presets="presets" @set="currentPreset=$event" :current="currentPreset"></presetter>
+    <presetter :presets="presets" @set="setPreset($event)" :current="currentPreset"></presetter>
 
     <midi-bus :absolute="true" :channels.sync="channels"></midi-bus>
 
@@ -42,9 +42,18 @@
       },
       data: {
         channels: {},
-        currentPreset: presets[0],
+        currentPreset: presets.main,
         presets,
       },
+      methods: {
+        setPreset(preset) {
+          this.currentPreset = preset
+          localStorage.savedPreset = preset.title
+        }
+      },
+      mounted() {
+        if (localStorage.savedPreset && presets[localStorage.savedPreset]) { this.currentPreset = presets[localStorage.savedPreset] }
+      }
     });
   </script>
 </body>

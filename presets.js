@@ -12,8 +12,8 @@ import { blobs } from './layers/blobs.js'
 import { chain } from './layers/chain.js'
 import { column } from './layers/column.js'
 
-export const presets = [
-  {
+export const presets = {
+  main: {
     title: 'main',
     layers: [
       { comp: bg },
@@ -28,7 +28,7 @@ export const presets = [
       { comp: spiral, ch: 8 },
     ],
   },
-  {
+  new: {
     title: 'new',
     layers: [
       { comp: bg },
@@ -43,4 +43,4 @@ export const presets = [
       { comp: spiral, ch: 8 },
     ],
   },
-]
+}
