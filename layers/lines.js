@@ -1,4 +1,4 @@
-export const lines = {
+export default {
   template: '<div></div>',
   name: 'lines',
   props: ['channel'],

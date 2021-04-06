@@ -1,4 +1,4 @@
-export const blobs = {
+export default {
   template: '<div></div>',
   name: 'blobs',
   props: ['channel'],

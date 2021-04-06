@@ -1,4 +1,4 @@
-export const column = {
+export default {
   template: '<div></div>',
   name: 'column-diag',
   props: ['channel'],

@@ -1,4 +1,4 @@
-export const hats = {
+export default {
   template: '<div></div>',
   name: 'hats',
   props: ['channel'],

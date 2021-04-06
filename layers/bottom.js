@@ -1,4 +1,4 @@
-export const bottom = {
+export default {
   template: '<div></div>',
   name: 'bottom',
   props: ['channel'],

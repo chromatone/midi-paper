@@ -1,4 +1,4 @@
-export const spiral = {
+export default {
   template: '<div></div>',
   name: 'spiral',
   props: ['channel'],

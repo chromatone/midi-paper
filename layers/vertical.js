@@ -1,13 +1,13 @@
 export default {
   template: '<div></div>',
-  name: 'column',
+  name: 'vertical',
   props: ['channel'],
   data() {
     return {
       layer: new paper.Layer({
         name: 'column',
       }),
-      stroke: 20,
+      stroke: 3,
       fade: new paper.Point(paper.view.bounds.width / 2, 100),
       circles: [],
       events: [
@@ -18,29 +18,22 @@ export default {
   },
   watch: {},
   methods: {
-    calcRadius(number) {
-      return Number(6 * Math.pow(2, (127 - number) / 12) + 10)
-    },
-    calcWidth(number) {
-      return (paper.view.bounds.width * number) / 127
-    },
-    calcHeight(number) {
-      return paper.view.bounds.height * (1 - number / 127)
-    },
     controls(value) {
       console.log(value)
     },
     playNote(note) {
+      let bounds = paper.view.bounds
       this.circles[length] = new paper.Shape.Circle({
         nameOct: note.nameOct,
-        center: [paper.view.bounds.width / 2, paper.view.bounds.height / 2],
-        radius: this.calcRadius(note.number),
+        center: [bounds.width / 2, note.number * 10],
+        radius: (Math.random() * bounds.width) / 3,
         layer: this.layer,
+        blendMode: 'lighten',
         strokeWidth: this.stroke,
-        strokeColor: {
+        fillColor: {
           hue: note.digit * 30,
-          lightness: note.velocity,
-          saturation: 0.9,
+          lightness: 0.6,
+          saturation: 0.8,
         },
       })
       this.circles[length]
@@ -51,7 +44,7 @@ export default {
             //    'position.x':this.fade.x
           },
           {
-            duration: 1000,
+            duration: 2000,
             easing: 'easeInOutQuad',
           },
         )

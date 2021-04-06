@@ -1,4 +1,4 @@
-export const chain = {
+export default {
   template: '<div ></div>',
   name: 'chain',
   props: ['channel'],

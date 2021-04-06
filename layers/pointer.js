@@ -1,6 +1,6 @@
 import Ola from '../assets/ola.min.js'
 
-export const pointer = {
+export default {
   template: '<div ></div>',
   name: 'pointer',
   props: ['channel'],

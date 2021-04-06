@@ -1,4 +1,4 @@
-export const grid = {
+export default {
   template: '<div></div>',
   name: 'grid',
   props: ['channel'],

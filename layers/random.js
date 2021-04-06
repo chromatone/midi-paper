@@ -1,4 +1,4 @@
-export const random = {
+export default {
   template: '<div></div>',
   name: 'random',
   props: ['channel'],
