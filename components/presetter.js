@@ -1,6 +1,7 @@
 export const presetter = {
   template: /*html*/ `
     <div class="presets">
+      <div class="preset" :class="{active:fx}" @click="$emit('toggle-fx')">FX</div>
       <div 
         class="preset" 
         v-for="preset in presets" :key="preset.title"
@@ -14,6 +15,6 @@ export const presetter = {
   data() {
     return {}
   },
-  props: ['current', 'presets'],
+  props: ['current', 'presets', 'fx'],
   mounted() {},
 }

@@ -18,11 +18,12 @@
 
   <div id="midi-paper">
 
-    <presetter :presets="presets" @set="setPreset($event)" :current="currentPreset"></presetter>
+    <presetter :fx="filter" @toggle-fx="filter=!filter" :presets="presets" @set="setPreset($event)"
+      :current="currentPreset"></presetter>
 
     <midi-bus :absolute="true" :channels.sync="channels"></midi-bus>
 
-    <paper :preset="currentPreset" :channels="channels" style="filter: url(#filter)">
+    <paper :preset="currentPreset" :channels="channels" :style="{filter: filter ? 'url(#filter)' : ''}">
     </paper>
 
     <filters></filters>
@@ -49,6 +50,7 @@
         channels: {},
         currentPreset: presets.main,
         presets,
+        filter: false,
       },
       methods: {
         setPreset(preset) {
