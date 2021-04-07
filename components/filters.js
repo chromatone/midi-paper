@@ -43,7 +43,6 @@ export default {
         [
           '16cc2',
           (cc) => {
-            console.log(cc)
             this.dilate = cc
           },
         ],
