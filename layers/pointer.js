@@ -26,8 +26,8 @@ export default {
     paper.view.onMouseMove = (event) => {
       this.point.set([event.point.x, event.point.y])
     }
-    paper.view.onFrame = (ev) => {
+    paper.view.on('frame', (ev) => {
       this.pointer.position = this.point
-    }
+    })
   },
 }

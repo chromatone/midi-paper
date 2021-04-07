@@ -17,12 +17,15 @@
 
 
   <div id="midi-paper">
+
     <presetter :presets="presets" @set="setPreset($event)" :current="currentPreset"></presetter>
 
     <midi-bus :absolute="true" :channels.sync="channels"></midi-bus>
 
-    <paper :preset="currentPreset" :channels="channels">
+    <paper :preset="currentPreset" :channels="channels" style="filter: url(#filter)">
     </paper>
+
+    <filters></filters>
   </div>
 
 
@@ -30,6 +33,7 @@
   <script type="module">
     import midiBus from './components/midi-bus.js'
     import paper from './components/midi-paper.js'
+    import filters from './components/filters.js'
     import { presets } from './presets.js'
     import { presetter } from './components/presetter.js'
 
@@ -39,6 +43,7 @@
         midiBus,
         presetter,
         paper,
+        filters,
       },
       data: {
         channels: {},
