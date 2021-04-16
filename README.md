@@ -5,7 +5,7 @@ Interactive Chromatone colour music theory visualisation
 
 ![](https://raw.githubusercontent.com/DeFUCC/midi-paper/master/Screenshot-2019-12-05-at-21.43.34-768x769.png)
 
-Developed with teenage enginnering op-z in mind, but may be used with any midi instrument as well.
+Developed with teenage engineering op-z in mind, but may be used with any midi instrument as well.
 
 ## Stack
 No build process – runs straight it your browser. 
