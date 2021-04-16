@@ -1,15 +1,17 @@
 export default {
   template: '<div></div>',
-  name: 'lines',
+  name: 'clock',
   props: ['channel'],
   data() {
     return {
       layer: new paper.Layer({
-        name: 'lines',
+        name: 'clock',
       }),
       lines: [],
-      maxCount: 10,
+      maxCount: 60,
       turn: true,
+      radius: 300,
+      count: 0,
     }
   },
   watch: {
@@ -20,23 +22,29 @@ export default {
       let bounds = paper.view.bounds
 
       this.lines[this.lines.length] = new paper.Path.Line({
-        from: [Math.random() * bounds.width, -10],
-        to: [Math.random() * bounds.width, 10 + bounds.height],
+        from: [bounds.width / 2, bounds.height / 2 - bounds.height / 3],
+        to: [bounds.width / 2, bounds.height / 2],
+        pivot: [bounds.width / 2, bounds.height / 2],
         layer: this.layer,
-        strokeColor: '#333',
+        strokeColor: '#fff',
         strokeJoin: 'round',
         opacity: 0.8,
-        strokeWidth: 2,
-        blendMode: 'multiply',
+        strokeWidth: 8,
+        strokeCap: 'round',
+        blendMode: 'difference',
         fillColor: null,
+        applyMatrix: false,
+        rotation: this.count * 5,
       })
+      this.count++
       this.lines[this.lines.length - 1].tween(
         {
           opacity: 0,
+          //rotation: (this.count - 2) * 5,
         },
         {
           duration: 2000,
-          easing: 'easeInOutQuad',
+          easing: 'easeInQuad',
         },
       )
       if (this.lines.length > this.maxCount) {

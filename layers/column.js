@@ -7,7 +7,7 @@ export default {
       layer: new paper.Layer({
         name: 'column',
       }),
-      stroke: 20,
+      stroke: 10,
       fade: new paper.Point(paper.view.bounds.width / 2, 100),
       circles: [],
       events: [
@@ -34,13 +34,14 @@ export default {
       this.circles[length] = new paper.Shape.Circle({
         nameOct: note.nameOct,
         center: [paper.view.bounds.width / 2, paper.view.bounds.height / 2],
+        blendMode: 'overlay',
         radius: this.calcRadius(note.number),
         layer: this.layer,
         strokeWidth: this.stroke,
         strokeColor: {
           hue: note.digit * 30,
-          lightness: note.velocity,
-          saturation: 0.9,
+          lightness: 0.6,
+          saturation: 0.6,
         },
       })
       this.circles[length]

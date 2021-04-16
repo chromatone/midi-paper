@@ -25,8 +25,8 @@ export default {
       let bounds = paper.view.bounds
       this.circles[length] = new paper.Shape.Circle({
         nameOct: note.nameOct,
-        center: [bounds.width / 2, note.number * 10],
-        radius: (Math.random() * bounds.width) / 3,
+        center: [bounds.width * Math.random(), bounds.height * Math.random()],
+        radius: (Math.random() * bounds.width) / 5,
         layer: this.layer,
         blendMode: 'lighten',
         strokeWidth: this.stroke,

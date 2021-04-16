@@ -49,6 +49,7 @@ export default {
           center: this.spiralCoords(i),
           radius: (108 - i) * 4 + 2,
           opacity: 0,
+          blendMode: 'hard-light',
           fillColor: {
             hue: ((i + 3) % 12) * 30,
             lightness: 0.6,
@@ -74,7 +75,7 @@ export default {
           opacity: 1,
         },
         {
-          duration: 30,
+          duration: 100,
           easing: 'easeOutQuad',
         },
       )
