@@ -1,7 +1,7 @@
 # MIDI Paper
 Interactive Chromatone colour music theory visualisation
 
-2D MIDI visualisation web-app. 1-8 midi channels correspond to 8 main components, that react to notes played. There is no motion – only fading - to impose the feeling of ever renewing paper on which you draw with music. 
+2D MIDI visualisation web-app. 1-8 midi channels correspond to 8 main components, that react to notes played. There is no motion – only fading - to impose the feeling of ever renewing paper on which you draw with music. Different blend modes make the art very interdependent.
 
 ![](https://raw.githubusercontent.com/DeFUCC/midi-paper/master/Screenshot-2019-12-05-at-21.43.34-768x769.png)
 
