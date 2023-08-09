@@ -10,7 +10,8 @@
   <script src="assets/vue.js"></script>
   <script type="text/javascript" src="assets/paper-full.min.js"></script>
   <script type="text/javascript" src="assets/webmidi.js"></script>
-  <script async defer data-website-id="6807257d-0e87-47a6-ae42-a95bd9f05d0f" src="https://stats.defucc.me/umami.js"></script>
+  <script async src="https://stats.chromatone.center/script.js"
+    data-website-id="978d38c2-e6c2-461b-a58b-f06a4968a3da"></script>
 
 </head>
 
@@ -36,8 +37,8 @@
     import midiBus from './components/midi-bus.js'
     import paper from './components/midi-paper.js'
     import filters from './components/filters.js'
-    import { presets } from './presets.js'
-    import { presetter } from './components/presetter.js'
+    import {presets} from './presets.js'
+    import {presetter} from './components/presetter.js'
 
     const ct = new Vue({
       el: '#midi-paper',
@@ -60,7 +61,7 @@
         }
       },
       mounted() {
-        if (localStorage.savedPreset && presets[localStorage.savedPreset]) { this.currentPreset = presets[localStorage.savedPreset] }
+        if (localStorage.savedPreset && presets[localStorage.savedPreset]) {this.currentPreset = presets[localStorage.savedPreset]}
       }
     });
   </script>
