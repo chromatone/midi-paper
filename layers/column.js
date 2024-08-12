@@ -1,3 +1,5 @@
+import midiBus from "../components/bus.js"
+
 export default {
   template: '<div></div>',
   name: 'column',
@@ -11,8 +13,8 @@ export default {
       fade: new paper.Point(paper.view.bounds.width / 2, 100),
       circles: [],
       events: [
-        ['noteinon' + this.channel.num, this.playNote],
-        [this.channel.num + 'cc4', this.controls],
+        ['noteinon' + this.channel?.num, this.playNote],
+        [this.channel?.num + 'cc4', this.controls],
       ],
     }
   },
@@ -56,21 +58,21 @@ export default {
             easing: 'easeInOutQuad',
           },
         )
-        .then((t) => {})
+        .then((t) => { })
       if (this.circles.length > 100) {
         this.circles.shift()
       }
     },
   },
-  mounted() {},
+  mounted() { },
   created() {
     for (let event of this.events) {
-      this.$midiBus.$on(event[0], event[1])
+      midiBus.$on(event[0], event[1])
     }
   },
   beforeDestroy() {
     for (let event of this.events) {
-      this.$midiBus.$off(event[0])
+      midiBus.$off(event[0])
     }
   },
 }

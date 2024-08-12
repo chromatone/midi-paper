@@ -1,3 +1,5 @@
+import midiBus from "../components/bus.js"
+
 export default {
   template: '<div></div>',
   name: 'grid',
@@ -12,9 +14,9 @@ export default {
       maxRadius: paper.view.bounds.width / 13,
       grid: [],
       events: [
-        ['noteinon' + this.channel.num, this.playNote],
-        ['noteinoff' + this.channel.num, this.stopNote],
-        [this.channel.num + 'cc4', this.controls],
+        ['noteinon' + this.channel?.num, this.playNote],
+        ['noteinoff' + this.channel?.num, this.stopNote],
+        [this.channel?.num + 'cc4', this.controls],
       ],
     }
   },
@@ -55,7 +57,7 @@ export default {
           this.grid[oct][note].position = [
             ((oct + 1) * paper.view.bounds.width) / 10,
             paper.view.bounds.height -
-              +(note + 1) * (paper.view.bounds.height / 13),
+            +(note + 1) * (paper.view.bounds.height / 13),
           ]
 
           this.grid[oct][note].radius = minDimension / 26
@@ -103,12 +105,12 @@ export default {
   },
   created() {
     for (event of this.events) {
-      this.$midiBus.$on(event[0], event[1])
+      midiBus.$on(event[0], event[1])
     }
   },
   beforeDestroy() {
     for (event of this.events) {
-      this.$midiBus.$off(event[0])
+      midiBus.$off(event[0])
     }
     this.grid = undefined
   },

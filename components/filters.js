@@ -1,3 +1,5 @@
+import midiBus from "./bus.js"
+
 export default {
   template: /*html*/ `    
   <svg style="position: absolute;" xmlns="http://www.w3.org/2000/svg">
@@ -78,17 +80,17 @@ export default {
 
   created() {
     for (let event of this.events) {
-      this.$midiBus.$on(event[0], event[1])
+      midiBus.$on(event[0], event[1])
     }
   },
   beforeDestroy() {
     for (let event of this.events) {
-      this.$midiBus.$off(event[0])
+      midiBus.$off(event[0])
     }
   },
   mounted() {
-    //    this.$midiBus.$on('noteinon1', this.boom) //boom on kick
-    //  this.$midiBus.$on('controlchange'+this.chNum, this.changeColor)
+    //    midiBus.$on('noteinon1', this.boom) //boom on kick
+    //  midiBus.$on('controlchange'+this.chNum, this.changeColor)
     window.addEventListener('resize', () => {
       console.log('resized')
     })

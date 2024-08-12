@@ -1,3 +1,5 @@
+import midiBus from "../components/bus.js"
+
 export default {
   template: '<div></div>',
   name: 'bg',
@@ -84,17 +86,17 @@ export default {
 
   created() {
     for (event of this.events) {
-      this.$midiBus.$on(event[0], event[1])
+      midiBus.$on(event[0], event[1])
     }
   },
   beforeDestroy() {
     for (event of this.events) {
-      this.$midiBus.$off(event[0])
+      midiBus.$off(event[0])
     }
   },
   mounted() {
-    //    this.$midiBus.$on('noteinon1', this.boom) //boom on kick
-    //  this.$midiBus.$on('controlchange'+this.chNum, this.changeColor)
+    //    midiBus.$on('noteinon1', this.boom) //boom on kick
+    //  midiBus.$on('controlchange'+this.chNum, this.changeColor)
     window.addEventListener('resize', () => {
       this.rect.bounds.size = paper.view.bounds.size
     })

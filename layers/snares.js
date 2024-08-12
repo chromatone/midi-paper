@@ -1,3 +1,5 @@
+import midiBus from "../components/bus.js"
+
 export default {
   template: '<div></div>',
   name: 'snares',
@@ -13,7 +15,7 @@ export default {
     }
   },
   watch: {
-    'channel.notes'(notes) {},
+    'channel.notes'(notes) { },
   },
   methods: {
     getSegments(num, w, h) {
@@ -58,10 +60,10 @@ export default {
     },
   },
   mounted() {
-    this.$midiBus.$on('noteinon' + this.channel.num, this.randomSnare)
+    midiBus.$on('noteinon' + this.channel?.num, this.randomSnare)
   },
   beforeDestroy() {
-    this.$midiBus.$off('noteinon' + this.channel.num)
+    midiBus.$off('noteinon' + this.channel?.num)
     this.snares = []
   },
 }

@@ -1,7 +1,7 @@
-Vue.prototype.$midiBus = new Vue() // Global event bus
+import midiBus from "./bus.js"
 
 export default {
-  template: /*html*/ `
+  template: /*html*/`
     <div class="midi-bus" :class="{'absolute':absolute}">
       <div class="devices">
         <span class="status" :class="{'active':midi.supported, 'error':!midi.supported}">
@@ -53,14 +53,14 @@ export default {
     noteInOn(ev) {
       this.inNote = ev
       let note = this.makeNote(ev)
-      this.$midiBus.$emit('noteinon' + note.channel, note)
+      midiBus.$emit('noteinon' + note.channel, note)
       this.checkChannel(ev.channel)
       this.$set(this.channels[ev.channel].notes, note.nameOct, note)
       this.$emit('update:channels', this.channels)
     },
     noteInOff(ev) {
       let note = this.makeNote(ev)
-      this.$midiBus.$emit('noteinoff' + note.channel, note)
+      midiBus.$emit('noteinoff' + note.channel, note)
       if (
         this.channels[ev.channel] &&
         this.channels[ev.channel].notes &&
@@ -72,7 +72,7 @@ export default {
     },
     ccInChange(ev) {
       this.inCc = ev
-      this.$midiBus.$emit(ev.channel + 'cc' + ev.controller.number, ev.value)
+      midiBus.$emit(ev.channel + 'cc' + ev.controller.number, ev.value)
       this.checkChannel(ev.channel)
       this.$set(this.channels[ev.channel].cc, ev.controller.number, ev.value)
       this.$emit('update:channels', this.channels)
@@ -94,7 +94,7 @@ export default {
     }, */
     reset(e) {
       this.resetChannels()
-      this.$midiBus.$emit('reset')
+      midiBus.$emit('reset')
       this.$emit('update:channels', this.channels)
     },
     setListeners(input) {
@@ -110,7 +110,7 @@ export default {
     if (WebMidi.supported) {
       WebMidi.enable()
     }
-    /*  this.$midiBus.$on('noteouton', this.noteOutOn)
-    this.$midiBus.$on('noteoutoff', this.noteOutOff) */
+    /*  midiBus.$on('noteouton', this.noteOutOn)
+    midiBus.$on('noteoutoff', this.noteOutOff) */
   },
 }

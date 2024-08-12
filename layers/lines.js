@@ -1,3 +1,5 @@
+import midiBus from "../components/bus.js"
+
 export default {
   template: '<div></div>',
   name: 'lines',
@@ -13,7 +15,7 @@ export default {
     }
   },
   watch: {
-    'channel.notes'(notes) {},
+    'channel.notes'(notes) { },
   },
   methods: {
     randomLine(note) {
@@ -45,10 +47,10 @@ export default {
     },
   },
   mounted() {
-    this.$midiBus.$on('noteinon' + this.channel.num, this.randomLine)
+    midiBus.$on('noteinon' + this.channel.num, this.randomLine)
   },
   beforeDestroy() {
-    this.$midiBus.$off('noteinon' + this.channel.num)
+    midiBus.$off('noteinon' + this.channel.num)
     this.lines = []
   },
 }

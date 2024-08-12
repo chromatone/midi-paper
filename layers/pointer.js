@@ -9,7 +9,7 @@ export default {
       layer: new paper.Layer({
         name: 'pointer',
       }),
-      point: Ola([0, 0], 1000),
+      point: [0, 0],
       pointer: new paper.Shape.Circle({
         center: this.point,
         radius: 420,
@@ -19,12 +19,13 @@ export default {
     }
   },
   watch: {
-    'pointer.position'() {},
+    'pointer.position'() { },
   },
   methods: {},
   mounted() {
     paper.view.onMouseMove = (event) => {
-      this.point.set([event.point.x, event.point.y])
+      this.point[0] = event.point.x;
+      this.point[1] = event.point.y;
     }
     paper.view.on('frame', (ev) => {
       this.pointer.position = this.point

@@ -1,3 +1,5 @@
+import midiBus from "../components/bus.js"
+
 export default {
   template: '<div ></div>',
   name: 'box',
@@ -17,7 +19,7 @@ export default {
     }
   },
   watch: {
-    'channel.notes'(notes) {},
+    'channel.notes'(notes) { },
   },
   methods: {
     positionBox() {
@@ -49,7 +51,8 @@ export default {
     },
   },
   mounted() {
-    this.$midiBus.$on('noteinon' + this.channel.num, this.boom)
+
+    midiBus.$on('noteinon' + this.channel?.num, this.boom)
     window.addEventListener('resize', () => {
       this.positionBox()
     })
@@ -57,6 +60,6 @@ export default {
   beforeDestroy() {
     this.box.remove()
     this.box = undefined
-    this.$midiBus.$off('noteinon' + this.channel.num)
+    midiBus.$off('noteinon' + this.channel?.num)
   },
 }

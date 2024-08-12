@@ -1,3 +1,5 @@
+import midiBus from "../components/bus.js"
+
 export default {
   template: '<div></div>',
   name: 'spiral',
@@ -13,9 +15,9 @@ export default {
       ),
       spiral: [],
       events: [
-        ['noteinon' + this.channel.num, this.playNote],
-        ['noteinoff' + this.channel.num, this.stopNote],
-        [this.channel.num + 'cc4', this.controls],
+        ['noteinon' + this.channel?.num, this.playNote],
+        ['noteinoff' + this.channel?.num, this.stopNote],
+        [this.channel?.num + 'cc4', this.controls],
       ],
     }
   },
@@ -32,15 +34,15 @@ export default {
     spiralCoords(i) {
       return [
         paper.view.center.x +
-          Math.cos((i / 12) * 2 * Math.PI) *
-            paper.view.bounds.width *
-            0.6 *
-            Math.sqrt((108 - i) / 108),
+        Math.cos((i / 12) * 2 * Math.PI) *
+        paper.view.bounds.width *
+        0.6 *
+        Math.sqrt((108 - i) / 108),
         paper.view.center.y +
-          Math.sin((i / 12) * 2 * Math.PI) *
-            paper.view.bounds.height *
-            0.6 *
-            Math.sqrt((108 - i) / 108),
+        Math.sin((i / 12) * 2 * Math.PI) *
+        paper.view.bounds.height *
+        0.6 *
+        Math.sqrt((108 - i) / 108),
       ]
     },
     createSpiral() {
@@ -103,12 +105,12 @@ export default {
   },
   created() {
     for (let event of this.events) {
-      this.$midiBus.$on(event[0], event[1])
+      midiBus.$on(event[0], event[1])
     }
   },
   beforeDestroy() {
     for (let event of this.events) {
-      this.$midiBus.$off(event[0])
+      midiBus.$off(event[0])
     }
   },
 }

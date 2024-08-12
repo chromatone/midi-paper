@@ -1,3 +1,5 @@
+import midiBus from "../components/bus.js"
+
 export default {
   template: '<div></div>',
   name: 'bottom',
@@ -76,16 +78,16 @@ export default {
     },
   },
   mounted() {
-    this.$midiBus.$on('noteinon' + this.channel.num, this.playNote)
-    this.$midiBus.$on('noteinoff' + this.channel.num, this.stopNote)
+    midiBus.$on('noteinon' + this.channel.num, this.playNote)
+    midiBus.$on('noteinoff' + this.channel.num, this.stopNote)
     this.createBottom()
     window.addEventListener('resize', () => {
       this.positionCircle()
     })
   },
   beforeDestroy() {
-    this.$midiBus.$off('noteinon' + this.channel.num)
-    this.$midiBus.$off('noteinoff' + this.channel.num)
+    midiBus.$off('noteinon' + this.channel.num)
+    midiBus.$off('noteinoff' + this.channel.num)
     this.circles = undefined
   },
 }

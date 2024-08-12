@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
   <link rel="stylesheet" href="css/styles.css" />
 
-  <script src="assets/vue.js"></script>
+  <script src="assets/vue.global.prod.js"></script>
   <script type="text/javascript" src="assets/paper-full.min.js"></script>
   <script type="text/javascript" src="assets/webmidi.js"></script>
   <script async src="https://stats.chromatone.center/script.js"
@@ -37,22 +37,25 @@
     import midiBus from './components/midi-bus.js'
     import paper from './components/midi-paper.js'
     import filters from './components/filters.js'
-    import {presets} from './presets.js'
-    import {presetter} from './components/presetter.js'
+    import { presets } from './presets.js'
+    import { presetter } from './components/presetter.js'
 
-    const ct = new Vue({
-      el: '#midi-paper',
+    const { createApp } = Vue
+
+    const ct = createApp({
       components: {
         midiBus,
         presetter,
         paper,
         filters,
       },
-      data: {
-        channels: {},
-        currentPreset: presets.main,
-        presets,
-        filter: false,
+      data() {
+        return {
+          channels: {},
+          currentPreset: presets.main,
+          presets,
+          filter: false,
+        }
       },
       methods: {
         setPreset(preset) {
@@ -61,9 +64,13 @@
         }
       },
       mounted() {
-        if (localStorage.savedPreset && presets[localStorage.savedPreset]) {this.currentPreset = presets[localStorage.savedPreset]}
+        if (localStorage.savedPreset && presets[localStorage.savedPreset]) { this.currentPreset = presets[localStorage.savedPreset] }
       }
     });
+
+    ct.mount('#midi-paper')
+
+    ct.config.globalProperties.$midiBus = createApp({})
   </script>
 </body>
 

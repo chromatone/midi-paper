@@ -1,5 +1,5 @@
 export const presetter = {
-  template: /*html*/ `
+  template: /*html*/`
     <div class="presets">
       <div class="preset" :class="{active:fx}" @click="$emit('toggle-fx')">FX</div>
       <div 
@@ -16,5 +16,5 @@ export const presetter = {
     return {}
   },
   props: ['current', 'presets', 'fx'],
-  mounted() {},
+  mounted() { },
 }

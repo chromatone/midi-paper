@@ -1,3 +1,5 @@
+import midiBus from "../components/bus.js"
+
 export default {
   template: '<div></div>',
   name: 'hats',
@@ -19,7 +21,7 @@ export default {
     }
   },
   watch: {
-    'channel.notes'(notes) {},
+    'channel.notes'(notes) { },
   },
   methods: {
     randomPos() {
@@ -57,11 +59,11 @@ export default {
     },
   },
   mounted() {
-    this.$midiBus.$on('noteinon' + this.channel.num, this.randomHat)
+    midiBus.$on('noteinon' + this.channel?.num, this.randomHat)
   },
   beforeDestroy() {
     this.circle.remove()
     this.circle = undefined
-    this.$midiBus.$off('noteinon' + this.channel.num)
+    midiBus.$off('noteinon' + this.channel?.num)
   },
 }
